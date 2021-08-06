@@ -123,20 +123,20 @@ const update = (obj, key, val) => {
     }
   } */
 
-  const createInstructor = (firstname, lastname) => {return {firstname, lastname}};
+const createInstructor = (firstname, lastname) => { return { firstname, lastname } };
 
-  /* COMPUTED PROPERTY NAMES
-  var favoriteNumber = 42;
+/* COMPUTED PROPERTY NAMES
+var favoriteNumber = 42;
 
 var instructor = {
-  firstName: "Colt"
+firstName: "Colt"
 }
 
 instructor[favoriteNumber] = "That is my favorite!" */
 const favoriteNumber = 42;
 const instructor = {
-    firstname : "Colt",
-    [favoriteNumber] : "That is my favorite!"
+    firstname: "Colt",
+    [favoriteNumber]: "That is my favorite!"
 }
 
 /* OBJECTS METHODS
@@ -149,18 +149,18 @@ var instructor = {
     return this.firstName " + "says bye!";
   }
 } */
-const instructor = {
+const instructor2 = {
     firstName: "Colt",
-    sayHi(){
-      return "Hi!"
+    sayHi() {
+        return "Hi!"
     },
-    sayBye(){
-      return this.firstName + " says bye!"
+    sayBye() {
+        return this.firstName + " says bye!"
     }
-  }
+}
 
 
-  /* Write a function which generates an animal object. The function should accepts 3 arguments:
+/* Write a function which generates an animal object. The function should accepts 3 arguments:
 
 species: the species of animal (‘cat’, ‘dog’)
 verb: a string used to name a function (‘bark’, ‘bleet’)
@@ -168,14 +168,14 @@ noise: a string to be printed when above function is called (‘woof’, ‘baaa
 Use one or more of the object enhancements we’ve covered. */
 
 
-const MyAnimal = (species, verb, noise) =>{
+const MyAnimal = (species, verb, noise) => {
     return {
-      species,
-      [verb](){
-        return noise;
-      }
+        species,
+        [verb]() {
+            return noise;
+        }
     }
-  }
+}
 /* **********************DESTRUCTURING EXERSICES ****************
 Object Destructuring 1
 What does the following code return/print?
@@ -328,5 +328,74 @@ Write a one line function to make this work using
 An arrow function
 Destructuring
 ‘Enhanced’ object assignment (same key/value shortcut)*/
+const raceResults = ([firts, second, third, ...rest]) => ({ first, second, third, rest })
 
-const raceResults = ([firts, second, third, ...rest]) => ({first, second, third, rest})
+
+
+//*********************************************************** */
+/* Maps and Sets Exercise
+
+« Back to Homepage
+
+Quick Question #1
+Quick Question #2
+Quick Questions #3
+hasDuplicate
+vowelCount
+Maps and Sets Exercise
+Quick Question #1
+What does the following code return?
+
+new Set([1,1,2,2,3,4]) // {1,2,3,4}
+Quick Question #2
+What does the following code return?
+
+[...new Set("referee")].join("") // "ref"
+Quick Questions #3
+What does the Map m look like after running the following code?
+
+let m = new Map();
+m.set([1,2,3], true);
+m.set([1,2,3], false);
+
+
+{Array(3) => true}
+{Array(3) => false}
+
+hasDuplicate
+Write a function called hasDuplicate which accepts an array and returns 
+true or false if that array contains a duplicate
+
+hasDuplicate([1,3,2,1]) // true
+hasDuplicate([1,5,-1,4]) // false */
+
+const hasDuplicate = (arr) => {
+    const mySet = new Set([...arr]);
+    return (arr.length === mySet.size);
+}
+
+/* vowelCount
+Write a function called vowelCount which accepts a string and returns a map 
+where the keys are numbers and the values are the count of the vowels in the string.
+
+vowelCount('awesome') // Map { 'a' => 1, 'e' => 2, 'o' => 1 }
+vowelCount('Colt') // Map { 'o' => 1 } */
+const vowelCount = (str) => {
+    const result = new Map();
+    const vowels = "aeiou";
+    for (let i = 0; i < str.length; i++) {
+        let char = str.toLowerCase()[i];
+        if (vowels.includes(char)) {
+            let count = 0;
+            for (let cha of str) {
+                if (cha === char) {
+                    count++;
+                }
+            }
+            if (str.indexOf(char) === i) {
+                result.set(char, count);
+            }
+        }
+    }
+    return result;
+}
